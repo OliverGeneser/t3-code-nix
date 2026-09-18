@@ -1,0 +1,42 @@
+name: Check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v31
+      - run: nix flake check --all-systems --no-build
+
+  check:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-14]
+        package: [latest, nightly]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v31
+      - run: nix build .#${{ matrix.package }} --print-build-logs
+      - name: Verify launcher
+        run: |
+          case "${{ matrix.package }}" in
+            latest) test -x ./result/bin/t3code ;;
+            nightly) test -x ./result/bin/t3code-nightly ;;
+          esac
+
+  install-together:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v31
+      - run: nix profile install .#latest .#nightly --profile "$RUNNER_TEMP/t3code-profile"
+      - run: |
+          test -x "$RUNNER_TEMP/t3code-profile/bin/t3code"
+          test -x "$RUNNER_TEMP/t3code-profile/bin/t3code-nightly"
+          grep -F 'T3CODE_HOME=' "$RUNNER_TEMP/t3code-profile/bin/t3code-nightly" | grep -F '.t3-nightly'
+          grep -F 'XDG_CONFIG_HOME=' "$RUNNER_TEMP/t3code-profile/bin/t3code-nightly" | grep -F 't3code-nightly'
