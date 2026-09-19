@@ -43,13 +43,18 @@ let
 
       mkdir -p "$out/share/applications"
       desktop_source="$(find ${appimageContents} -name '*.desktop' -print -quit)"
+
       if [ -n "$desktop_source" ]; then
         desktop_file="$out/share/applications/${pname}.desktop"
         cp "$desktop_source" "$desktop_file"
+
         substituteInPlace "$desktop_file" \
           --replace-warn "Exec=AppRun" "Exec=${executableName}" \
           --replace-warn "TryExec=AppRun" "TryExec=${executableName}" \
-          --replace-warn "MimeType=x-scheme-handler/t3code;x-scheme-handler/t3code-dev;" "${lib.optionalString (!isNightly) "MimeType=x-scheme-handler/t3code;x-scheme-handler/t3code-dev;"}"
+
+        if ! grep -q '^MimeType=' "$desktop_file"; then
+          echo 'MimeType=x-scheme-handler/t3code;' >> "$desktop_file"
+        fi  
       fi
     '';
 
