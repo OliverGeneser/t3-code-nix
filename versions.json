@@ -1,12 +1,12 @@
 {
   "latest": {
-    "tag": "v0.1.1",
-    "version": "0.1.1",
+    "tag": "v0.1.2",
+    "version": "0.1.2",
     "hashes": {
-      "x86_64-linux": "sha256-+KtS/hDvPLhyoIPQOP0SDdHsW0mP71aNBLKLenLGDDc=",
-      "aarch64-linux": "sha256-KXUd4IDty0TCunSIhcEPvRqUKUXGAUbt03/EbQHGvB8=",
-      "x86_64-darwin": "sha256-6QQaiH7n43qDm8PaxRlMHBOudTb+Uxo0OfKVKBESJkg=",
-      "aarch64-darwin": "sha256-oZs/PPF+G2mj0thjD9ll8bYyU+wHglcZn95m5hVn4pM="
+      "x86_64-linux": "sha256-zwHi0Wfv+dAcTBAE0xssDaniUizJQmLkFkTRyxXf21w=",
+      "aarch64-linux": "sha256-ZV7LSPVuPekse9ZK+ef0NLBGp/665GGIUqxNnjHRGkI=",
+      "x86_64-darwin": "sha256-I1gKJq+tvgoQvT55/eWMTVxN9+k263EIdV/xcZqEEeo=",
+      "aarch64-darwin": "sha256-yZ295yaxaIU8RAnzIpK3OB2yyDwayg690cUGBl6smQ8="
     }
   },
   "nightly": {
