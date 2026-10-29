@@ -1,22 +1,22 @@
 {
   "latest": {
-    "tag": "v0.1.3",
-    "version": "0.1.3",
+    "tag": "v0.1.5",
+    "version": "0.1.5",
     "hashes": {
-      "x86_64-linux": "sha256-gBzOSC0ghdob+6HQ4wHAotdafI0O/SSGXCJhlINC3yE=",
-      "aarch64-linux": "sha256-c8VpMo757ZIuWFsAe1HIHj6obF10tYhLYd7MTEiwcxg=",
-      "x86_64-darwin": "sha256-HoeyOrv+jS9vZls0a2hWPK28JIP/64JdNikL1MdhNys=",
-      "aarch64-darwin": "sha256-cpCvmRafhsoEFkE2KoeHOEKqSsGCpgH+gqu3q/Kumok="
+      "x86_64-linux": "sha256-kz/53ExlCnWqQIfJjyrmxlQMIz8OL+sy6/+VCwm+hJ0=",
+      "aarch64-linux": "sha256-KtjGrc3LwhB/9FVdFJoKkaWddkh1NlxXxotPgnJTdoI=",
+      "x86_64-darwin": "sha256-oeWLEvkfTPs8R0BRxTe71lpqbtvH54NX1W2HM37zU20=",
+      "aarch64-darwin": "sha256-1ttZSLmSZFl/h8ePAt0LCKfFJu8jzIqvE1wUhnuq1Wg="
     }
   },
   "nightly": {
-    "tag": "v0.1.4-nightly.20261029.3853",
-    "version": "0.1.4-nightly.20261029.3853",
+    "tag": "v0.1.5-nightly.20261029.3877",
+    "version": "0.1.5-nightly.20261029.3877",
     "hashes": {
-      "x86_64-linux": "sha256-RIJCFb2lsgZ7N/8JCJlhr7Uhn32S4S80FULUZMW4SbI=",
-      "aarch64-linux": "sha256-VyGLygdiL4993KPhDoqmd4+ANnSpHcmbp5GDnYL1e+8=",
-      "x86_64-darwin": "sha256-gQXIbufmoeAfU+3XYS/RJdQWuxAbaGnKPcuVqG1m820=",
-      "aarch64-darwin": "sha256-OlKw8WfAiAegTToAN8ZPBw1cLt56Omh/9F96bYXtwxA="
+      "x86_64-linux": "sha256-KJcabnVn51y9cipEFPB/QD6rHEvlucohmWNcAumSylc=",
+      "aarch64-linux": "sha256-ljeVNXJale2pXc4FwRKV43p8pyc46tx+dFXbEL5xf2w=",
+      "x86_64-darwin": "sha256-6U3V7VpX5LhpkghULKSpha8QqZi5wwJ+4LB39hMJHT4=",
+      "aarch64-darwin": "sha256-Tvr1L286Mp7HoaXRq7bH/fbd71ljRz93n0AL9La1BUg="
     }
   }
 }
