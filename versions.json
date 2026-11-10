@@ -10,13 +10,13 @@
     }
   },
   "nightly": {
-    "tag": "v0.1.9-nightly.20261110.4465",
-    "version": "0.1.9-nightly.20261110.4465",
+    "tag": "v0.1.9-nightly.20261110.4478",
+    "version": "0.1.9-nightly.20261110.4478",
     "hashes": {
-      "x86_64-linux": "sha256-RRjYyE1F5AN2FSdZJvPRHDFPvWxyJrzQTd6qucL8iF4=",
-      "aarch64-linux": "sha256-qq8ST7UCfZWXj4ZhTJ9fbaWBCf6UxM56jgOWmuZCefw=",
-      "x86_64-darwin": "sha256-Fkv6pUT7V2rBprpvTRiTY0/DdpCVYECWE4nCugnb64c=",
-      "aarch64-darwin": "sha256-JzTvBdSXGQbYMzCRe5b/1vvrgkoKsM9k2t0zYhdPGZU="
+      "x86_64-linux": "sha256-A0uSaodJzrk3og46OEt+WMPQZo3A9Qicxr0MfEVFCfk=",
+      "aarch64-linux": "sha256-dLXDiEsdxreOaORPC6GiFUebLEGEHRufAsq9I2CM3cE=",
+      "x86_64-darwin": "sha256-vWJPwWM1ihdcLvAVRnPlcIZOpYyNgMnhglXzLW7emfo=",
+      "aarch64-darwin": "sha256-NuF0Gkvx9Q78/BGSnfS7GnyBtciU8PTSmvUkKkfIEBM="
     }
   }
 }
