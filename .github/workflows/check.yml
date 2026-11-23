@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: cachix/install-nix-action@v31
+      - uses: cachix/install-nix-action@v32
       - run: nix flake check --all-systems --no-build
 
   check:
@@ -20,7 +20,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v7
-      - uses: cachix/install-nix-action@v31
+      - uses: cachix/install-nix-action@v32
       - run: nix build .#${{ matrix.package }} --print-build-logs
       - name: Verify launcher
         run: |
@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: cachix/install-nix-action@v31
+      - uses: cachix/install-nix-action@v32
       - run: nix profile install .#latest .#nightly --profile "$RUNNER_TEMP/t3code-profile"
       - run: |
           test -x "$RUNNER_TEMP/t3code-profile/bin/t3code"

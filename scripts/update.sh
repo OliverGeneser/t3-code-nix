@@ -19,6 +19,57 @@ to_sri() {
   nix hash to-sri --type sha256 "$1"
 }
 
+# T3 Code renames its release assets from time to time (v0.1.11 dropped the
+# version from the AppImage names and nightly AppImages use "Nightly"
+# instead of the version), so resolve assets by name pattern instead of
+# constructing exact names. The exact asset name is stored in versions.json
+# and used verbatim when building download URLs.
+asset_patterns=(
+  "x86_64-linux|^T3-Code-.*x86_64[.]AppImage$"
+  "aarch64-linux|^T3-Code-.*arm64[.]AppImage$"
+  "aarch64-darwin|^T3-Code-.*arm64[.]zip$"
+)
+
+release_entry() {
+  local json="$1"
+  local tag version
+  tag="$(jq -r .tag_name <<<"$json")"
+  version="${tag#v}"
+
+  local system pattern match name digest sri
+  local table=""
+  for spec in "${asset_patterns[@]}"; do
+    system="${spec%%|*}"
+    pattern="${spec#*|}"
+    match="$(jq -r --arg pattern "$pattern" '
+      [.assets[] | select(.name | test($pattern))]
+      | if length == 1 then (.[0] | [.name, .digest]) | @tsv else empty end
+    ' <<<"$json")"
+    if [[ -z "$match" ]]; then
+      echo "error: release $tag has no unique asset for $system (pattern: $pattern)" >&2
+      return 1
+    fi
+    name="${match%%$'\t'*}"
+    digest="${match#*$'\t'}"
+    digest="${digest#sha256:}"
+    if [[ ! "$digest" =~ ^[[:xdigit:]]{64}$ ]]; then
+      echo "error: asset $name of release $tag is missing a sha256 digest" >&2
+      return 1
+    fi
+    sri="$(to_sri "$digest")"
+    table+="${system}"$'\t'"${name}"$'\t'"${sri}"$'\n'
+  done
+
+  jq -Rn \
+    --arg tag "$tag" \
+    --arg version "$version" \
+    --arg table "$table" '
+    $table | split("\n") | map(select(length > 0) | split("\t"))
+    | reduce .[] as [$system, $name, $hash]
+        ({tag: $tag, version: $version}; .assets[$system] = {name: $name, hash: $hash})
+  '
+}
+
 release_json="$(api "https://api.github.com/repos/${repo}/releases/latest")"
 releases_json="$(api "https://api.github.com/repos/${repo}/releases?per_page=100")"
 nightly_json="$(jq -c '[.[] | select(.prerelease and (.tag_name | contains("-nightly.")))] | sort_by(.published_at) | last' <<<"$releases_json")"
@@ -28,25 +79,12 @@ if [[ "$nightly_json" == "null" ]]; then
   exit 1
 fi
 
-release_entry() {
-  local json="$1"
-  local tag version
-  tag="$(jq -r .tag_name <<<"$json")"
-  version="${tag#v}"
-
-  jq -n \
-    --arg tag "$tag" \
-    --arg version "$version" \
-    --arg x86_64_linux "$(to_sri "$(jq -r --arg name "T3-Code-${version}-x86_64.AppImage" '.assets[] | select(.name == $name) | .digest | sub("^sha256:"; "")' <<<"$json")")" \
-    --arg aarch64_linux "$(to_sri "$(jq -r --arg name "T3-Code-${version}-arm64.AppImage" '.assets[] | select(.name == $name) | .digest | sub("^sha256:"; "")' <<<"$json")")" \
-    --arg x86_64_darwin "$(to_sri "$(jq -r --arg name "T3-Code-${version}-x64.zip" '.assets[] | select(.name == $name) | .digest | sub("^sha256:"; "")' <<<"$json")")" \
-    --arg aarch64_darwin "$(to_sri "$(jq -r --arg name "T3-Code-${version}-arm64.zip" '.assets[] | select(.name == $name) | .digest | sub("^sha256:"; "")' <<<"$json")")" \
-    '{tag: $tag, version: $version, hashes: {"x86_64-linux": $x86_64_linux, "aarch64-linux": $aarch64_linux, "x86_64-darwin": $x86_64_darwin, "aarch64-darwin": $aarch64_darwin}}'
-}
+latest_entry="$(release_entry "$release_json")"
+nightly_entry="$(release_entry "$nightly_json")"
 
 jq -n \
-  --argjson latest "$(release_entry "$release_json")" \
-  --argjson nightly "$(release_entry "$nightly_json")" \
+  --argjson latest "$latest_entry" \
+  --argjson nightly "$nightly_entry" \
   '{latest: $latest, nightly: $nightly}' >"$tmp"
 
 if cmp -s "$tmp" "$root/versions.json"; then

@@ -19,23 +19,26 @@ let
     license = lib.licenses.mit;
     mainProgram = executableName;
     sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
-    platforms = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+    platforms = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
   };
 
-  linuxArch = if stdenv.hostPlatform.isAarch64 then "arm64" else "x86_64";
-  linuxSrc = fetchurl {
-    url = "https://github.com/pingdotgg/t3code/releases/download/${release.tag}/T3-Code-${release.version}-${linuxArch}.AppImage";
-    hash = release.hashes.${stdenv.hostPlatform.system};
+  # Asset names are resolved by scripts/update.sh and stored verbatim in
+  # versions.json, because T3 Code changes its release asset naming
+  # (e.g. v0.1.11 dropped the version from the AppImage names).
+  asset = release.assets.${stdenv.hostPlatform.system};
+  src = fetchurl {
+    url = "https://github.com/pingdotgg/t3code/releases/download/${release.tag}/${asset.name}";
+    hash = asset.hash;
   };
   appimageContents = appimageTools.extract {
     inherit pname;
     inherit (release) version;
-    src = linuxSrc;
+    inherit src;
   };
   linuxPackage = appimageTools.wrapType2 {
     inherit pname;
     inherit (release) version;
-    src = linuxSrc;
+    inherit src;
     nativeBuildInputs = [ makeWrapper ];
 
     extraInstallCommands = ''
@@ -61,15 +64,11 @@ let
     meta = commonMeta;
   };
 
-  darwinArch = if stdenv.hostPlatform.isAarch64 then "arm64" else "x64";
   darwinPackage = stdenvNoCC.mkDerivation {
     inherit pname;
     inherit (release) version;
 
-    src = fetchurl {
-      url = "https://github.com/pingdotgg/t3code/releases/download/${release.tag}/T3-Code-${release.version}-${darwinArch}.zip";
-      hash = release.hashes.${stdenv.hostPlatform.system};
-    };
+    inherit src;
     nativeBuildInputs = [ makeWrapper unzip ] ++ lib.optionals isNightly [ asar ];
     sourceRoot = ".";
     dontConfigure = true;
@@ -104,5 +103,7 @@ let
   };
 in
 if stdenv.hostPlatform.isLinux then linuxPackage
-else if stdenv.hostPlatform.isDarwin then darwinPackage
+else if stdenv.hostPlatform.isDarwin && stdenv.hostPlatform.isAarch64 then darwinPackage
+else if stdenv.hostPlatform.isDarwin then
+  throw "T3 Code is not packaged for ${stdenv.hostPlatform.system}; only aarch64-darwin is supported"
 else throw "T3 Code is not published for ${stdenv.hostPlatform.system}"

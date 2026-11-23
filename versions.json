@@ -1,22 +1,38 @@
 {
   "latest": {
-    "tag": "v0.1.9",
-    "version": "0.1.9",
-    "hashes": {
-      "x86_64-linux": "sha256-0KtW3z4zjyQoSENWISl/2WOjNxWw2CCNvwg5lllXLYE=",
-      "aarch64-linux": "sha256-m8HIZp01uUgP3v1lHE/L4eDea+FLSlBorst2MfCPCPU=",
-      "x86_64-darwin": "sha256-ZYXtbs7NnKkxJ5ih46b8bX4Ie+RTW61vR4xMt/Ryxps=",
-      "aarch64-darwin": "sha256-A+9CbmasWxZwAYhZbBOU9EhYa4q3zDeeHjIbKfLEWX4="
+    "tag": "v0.1.11",
+    "version": "0.1.11",
+    "assets": {
+      "x86_64-linux": {
+        "name": "T3-Code-x86_64.AppImage",
+        "hash": "sha256-i6oGp7uqP3KdaUZvshHtcAbWpuTYALns2s2DH9FoaxQ="
+      },
+      "aarch64-linux": {
+        "name": "T3-Code-arm64.AppImage",
+        "hash": "sha256-Pa+IzPF1SLwp/4pueOIl3vBpa0RJjF9QBXBI4YLxRiY="
+      },
+      "aarch64-darwin": {
+        "name": "T3-Code-0.1.11-arm64.zip",
+        "hash": "sha256-LpJFQDHb/6xF+dxeQ0ge09KdiR+un9WAzu6vKO/l8jA="
+      }
     }
   },
   "nightly": {
-    "tag": "v0.1.10-nightly.20261113.4643",
-    "version": "0.1.10-nightly.20261113.4643",
-    "hashes": {
-      "x86_64-linux": "sha256-4Ae5w57pzpfvm/mobcsR6lLwzLfxQpUkjl/zbmTiv2s=",
-      "aarch64-linux": "sha256-pj3FC4nfBXV/pphEpmqwCw6XaC3I087iINrH8d5YXsQ=",
-      "x86_64-darwin": "sha256-BIGmvrlVAfRCG6ZkDcFRoODkjzkfw8+xKbY85HcA19U=",
-      "aarch64-darwin": "sha256-FGhTda9mCzSta0ySA6ctnHqmx0k0uZFBUN0bLhrqC8k="
+    "tag": "v0.1.12-nightly.20261123.5138",
+    "version": "0.1.12-nightly.20261123.5138",
+    "assets": {
+      "x86_64-linux": {
+        "name": "T3-Code-Nightly-x86_64.AppImage",
+        "hash": "sha256-hlmZPgMYLo8HYBWQKE7yMWkLWshkOn2U9YmnyOXf+JI="
+      },
+      "aarch64-linux": {
+        "name": "T3-Code-Nightly-arm64.AppImage",
+        "hash": "sha256-klUJJ11sS1cMbTgOPGA4zcegjyLthK/LKNCuRdf6PK4="
+      },
+      "aarch64-darwin": {
+        "name": "T3-Code-0.1.12-nightly.20261123.5138-arm64.zip",
+        "hash": "sha256-LdIoYhcWADBEdGknLKAf0hHwRVjYqEwpcxjSMzWa3wA="
+      }
     }
   }
 }
