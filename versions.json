@@ -18,20 +18,20 @@
     }
   },
   "nightly": {
-    "tag": "v0.1.12-nightly.20261123.5165",
-    "version": "0.1.12-nightly.20261123.5165",
+    "tag": "v0.1.12-nightly.20261124.5191",
+    "version": "0.1.12-nightly.20261124.5191",
     "assets": {
       "x86_64-linux": {
         "name": "T3-Code-Nightly-x86_64.AppImage",
-        "hash": "sha256-5SmA2VjyKgZkiuwPfGlPeC2Yl45U0egDS/6YnnpFfzQ="
+        "hash": "sha256-CL4+Xk2Tp5Krh2B0z/voiDNsT23UfU6/JWJuFAIwQ4k="
       },
       "aarch64-linux": {
         "name": "T3-Code-Nightly-arm64.AppImage",
-        "hash": "sha256-bgIcGDWTayN4ukEvbf0ChuBl9bCVVyX+y7RK/brQ3/U="
+        "hash": "sha256-sHbe3HcRDJqj+SZ19a8J8TPrXeOOvcrsw2hzdOf1huI="
       },
       "aarch64-darwin": {
-        "name": "T3-Code-0.1.12-nightly.20261123.5165-arm64.zip",
-        "hash": "sha256-FuWelx7CqfOODhw/sAvl0e7eioYSoBeauxv5x1yofUk="
+        "name": "T3-Code-0.1.12-nightly.20261124.5191-arm64.zip",
+        "hash": "sha256-uDa6xyc1FmeO/4IyXN1CNRN+FngxNALQkbHtDqKuOxk="
       }
     }
   }
