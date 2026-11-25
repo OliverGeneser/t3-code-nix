@@ -1,37 +1,37 @@
 {
   "latest": {
-    "tag": "v0.1.11",
-    "version": "0.1.11",
+    "tag": "v0.1.12",
+    "version": "0.1.12",
     "assets": {
       "x86_64-linux": {
         "name": "T3-Code-x86_64.AppImage",
-        "hash": "sha256-i6oGp7uqP3KdaUZvshHtcAbWpuTYALns2s2DH9FoaxQ="
+        "hash": "sha256-ZrkVUVcd9tKbVctZApXt9BHP+WyVqP6z9Bw8pZXXIuI="
       },
       "aarch64-linux": {
         "name": "T3-Code-arm64.AppImage",
-        "hash": "sha256-Pa+IzPF1SLwp/4pueOIl3vBpa0RJjF9QBXBI4YLxRiY="
+        "hash": "sha256-agBNXaVi7CXRR930rld+1m49BStolU5FWheCl6g72Po="
       },
       "aarch64-darwin": {
-        "name": "T3-Code-0.1.11-arm64.zip",
-        "hash": "sha256-LpJFQDHb/6xF+dxeQ0ge09KdiR+un9WAzu6vKO/l8jA="
+        "name": "T3-Code-0.1.12-arm64.zip",
+        "hash": "sha256-bMxS4Q2dQGeTjbfNU11Q2Bk4ZP6/oc+myEhbw6p9v7c="
       }
     }
   },
   "nightly": {
-    "tag": "v0.1.12-nightly.20261124.5209",
-    "version": "0.1.12-nightly.20261124.5209",
+    "tag": "v0.1.13-nightly.20261125.5245",
+    "version": "0.1.13-nightly.20261125.5245",
     "assets": {
       "x86_64-linux": {
         "name": "T3-Code-Nightly-x86_64.AppImage",
-        "hash": "sha256-qf3WcsczWJrcNwAJyV2pFLCquw6K41LhxX76kNiP0PI="
+        "hash": "sha256-XYpaACe5Q/kpsFiWd6dVUpReQwhDwR81UuFSJbgRHUg="
       },
       "aarch64-linux": {
         "name": "T3-Code-Nightly-arm64.AppImage",
-        "hash": "sha256-3qNeKkdGpSHV5UoVf1YWqXWkvUbNkqWHabrfhfamLHo="
+        "hash": "sha256-sijMoPsdMV1ZKfMA0F9wFyo3rNG0xnzl4UTDQexbq3E="
       },
       "aarch64-darwin": {
-        "name": "T3-Code-0.1.12-nightly.20261124.5209-arm64.zip",
-        "hash": "sha256-035hxRga6S46v6OsmDMGeYrnLzPsel2CBpcotnOiufQ="
+        "name": "T3-Code-0.1.13-nightly.20261125.5245-arm64.zip",
+        "hash": "sha256-9zjCelzCgMzqZ9/2dPFBkaI1pts1cJGuEPPsstqlaTI="
       }
     }
   }
